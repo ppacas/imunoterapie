@@ -1,1 +1,1 @@
-Zjednodušené schéma podmínek úhrady imunoterapie v ČR k 7.5.2025
+Zjednodušené schéma podmínek úhrady imunoterapie a cílené léčby v ČR k 7.5.2025
