@@ -1,10 +1,10 @@
-# Podmínky úhrady imunoterapie v ČR (zjednodušený přehled)
+# Podmínky úhrady imunoterapie a cílené léčby v ČR (zjednodušený přehled)
 
-Níže je přehled podmínek úhrady imunoterapeutických léků (pembrolizumab, nivolumab, ipilimumab, durvalimab, avelumab, dostarlimab) podle indikací a obecných požadavků. Informace jsou zpracovány z dokumentu regulátora (SÚKL) a uspořádány pro větší přehlednost, platné k 7.5.2025.
+Níže je přehled podmínek úhrady imunoterapeutických a cílených léků podle indikací a obecných požadavků. Informace jsou zpracovány z dokumentu regulátora (SÚKL) a uspořádány pro větší přehlednost, platné k 7.5.2025.
 
----
+## Obecné podmínky
 
-## Obecné podmínky pro úhradu (platí pro všechny léky, pokud není uvedeno jinak)
+### Obecné podmínky pro úhradu imunoterapie (platí pro všechny léky, pokud není uvedeno jinak)
 
 1. **Výkonnostní stav**: ECOG 0–1.
 2. **Mozkové metastázy**: Nepřítomnost klinicky aktivních mozkových metastáz, nebo jsou adekvátně léčeny.
@@ -21,11 +21,34 @@ Níže je přehled podmínek úhrady imunoterapeutických léků (pembrolizumab,
 7. **Progrese onemocnění**: Léčba je hrazena do potvrzení progrese, verifikované opakovaným radiologickým vyšetřením (4–8 týdnů kvůli mechanismu imunoterapie).
 8. **Kombinovaná léčba**: Pokud je některá složka kombinace ukončena kvůli toxicitě, ostatní složky mohou pokračovat.
 
----
+### Poznámky k úhradě imunoterapie
 
-## Pembrolizumab (Keytruda)
+- **Délka léčby**: Specifikována u každé indikace (např. max. 35 cyklů, 12 měsíců, 2 roky).
+- **Progrese**: Vždy verifikována opakovaným radiologickým vyšetřením (4–8 týdnů).
+- **Kombinace**: Při ukončení jedné složky kvůli toxicitě lze pokračovat s ostatními.
+- **Další specifické podmínky**: Uvedeny u jednotlivých indikací (např. PD-L1 exprese, absence mutací EGFR/ALK, MSI-H/dMMR status).
 
-### Indikace a podmínky úhrady
+### Obecné podmínky pro úhradu cílené léčby (platí pro všechny léky, pokud není uvedeno jinak)
+
+1. **Výkonnostní stav**: ECOG 0–1 (u některých indikací ECOG 0–2).
+2. **Mozkové metastázy**: Nepřítomnost klinicky aktivních mozkových metastáz, nebo jsou adekvátně léčeny (pokud je specifikováno).
+3. **Progrese onemocnění**: Léčba je hrazena do potvrzení progrese (dle kritérií RECIST, pokud uvedeno) nebo nepřijatelné toxicity, pokud není stanovena maximální délka.
+4. **Kombinovaná léčba**: Pokud je některá složka kombinace ukončena kvůli toxicitě nebo vyčerpání cyklů, ostatní složky mohou pokračovat, pokud je to dobře snášeno.
+5. **Laboratorní požadavky**: Specifické markery (např. HER2 pozitivita, BRCA1/2 mutace, RET fúze) musejí být prokázány validní metodou v referenční laboratoři
+
+### Poznámky k úhradě cílené léčby
+
+- **Délka léčby**: Specifikována u každé indikace (např. max. 6, 12, 18 cyklů, 1–3 roky).
+- **Progrese**: Vždy verifikována vhodnou zobrazovací technikou (RECIST, pokud uvedeno).
+- **Kombinace**: Při ukončení jedné složky kvůli toxicitě lze pokračovat s ostatními, pokud je to tolerováno.
+- **Specifické markery**: Nutnost prokázání HER2, BRCA1/2, RET, CD20, CD19 apod. dle indikace.
+- **Kontroly**: U některých indikací pravidelné hodnocení (např. každé 3 měsíce pro pazopanib, DAS28 pro rituximab u revmatoidní artritidy).
+
+## Seznam léků
+
+### Pembrolizumab (Keytruda)
+
+#### Indikace a podmínky úhrady
 
 1. **Nemalobuněčný karcinom plic (NSCLC)**:
    - **Monoterapie (1. linie)**: Metastazující NSCLC, PD-L1 TPS ≥50 %. Max. 35 cyklů.
@@ -68,11 +91,9 @@ Níže je přehled podmínek úhrady imunoterapeutických léků (pembrolizumab,
 9. **Hodgkinův lymfom**:
    - **Monoterapie**: Relabující/refrakterní klasický Hodgkinův lymfom po ≥2 liniích léčby, bez možnosti autologní transplantace. Max. 35 cyklů.
 
----
+### Nivolumab (Opdivo)
 
-## Nivolumab (Opdivo)
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Melanom**:
    - **Monoterapie nebo kombinace s ipilimumabem (1. linie)**: Lokálně pokročilý neresekovatelný nebo metastatický melanom, bez předchozí systémové léčby. Max. 52 cyklů (240 mg/2 týdny) nebo 26 cyklů (480 mg/4 týdny).
@@ -110,11 +131,9 @@ Níže je přehled podmínek úhrady imunoterapeutických léků (pembrolizumab,
      - Autologní transplantaci bez předchozí léčby brentuximab vedotinem.
    - **Další podmínky**: Bez postižení CNS lymfomem. Hrazeno do progrese.
 
----
+### Ipilimumab (Yervoy)
 
-## Ipilimumab (Yervoy)
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Melanom**:
    - **Monoterapie**: Pokročilý (stádium III neresekovatelný nebo IV) po předchozí léčbě chemoterapeutiky/cytokiny (dakarbazin, interleukin-2, fotemustin, karboplatina, temozolomid). Max. 4 dávky (3 mg/kg).
@@ -130,11 +149,9 @@ Níže je přehled podmínek úhrady imunoterapeutických léků (pembrolizumab,
    - **Kombinace s nivolumabem a chemoterapií (1. linie)**: Metastazující NSCLC, PD-L1 TPS 0–49 %. Max. 2 cykly chemoterapie na bázi platiny, celková léčba max. 24 měsíců.
    - **Další podmínky**: Bez aktivačních mutací EGFR/ALK, bez intersticiální plicní choroby.
 
----
+### Durvalumab (Imfinzi)
 
-## Durvalumab (Imfinzi)
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Nemalobuněčný karcinom plic (NSCLC)**:
    - **Monoterapie**: Lokálně pokročilý, neoperovatelný, PD-L1 ≥1 %, bez progrese po chemo-radioterapii na bázi platiny. Max. 12 měsíců.
@@ -143,11 +160,9 @@ Níže je přehled podmínek úhrady imunoterapeutických léků (pembrolizumab,
 2. **Malobuněčný karcinom plic**:
    - **Kombinace s etoposidem a platinou (1. linie)**: Pokročilé stádium.
 
----
+### Avelumab (Bavencio)
 
-## Avelumab (Bavencio)
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Karcinom z Merkelových buněk**:
    - **Monoterapie**: Metastatický (stádium IV). Hrazeno do progrese nebo toxicity.
@@ -156,11 +171,9 @@ Níže je přehled podmínek úhrady imunoterapeutických léků (pembrolizumab,
 2. **Uroteliální karcinom**:
    - **Monoterapie (udržovací léčba)**: Lokálně pokročilý/metastatický po stabilizaci na platinové chemoterapii (1. linie). Hrazeno do progrese nebo toxicity.
 
----
+### Dostarlimab (Jemperli)
 
-## Dostarlimab (Jemperli)
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Endometriální karcinom**:
    - **Kombinace s karboplatinou a paklitaxelem**: Primárně pokročilý nebo rekurentní s MSI-H nebo dMMR. Max. 3 roky nebo do progrese/toxicity.
@@ -169,36 +182,9 @@ Níže je přehled podmínek úhrady imunoterapeutických léků (pembrolizumab,
      - Bez předchozí systémové léčby pro pokročilé onemocnění.
      - Při adjuvantní chemoterapii: Rekurence ≥6 měsíců po ukončení.
 
----
+### Trastuzumab deruxtekan (Enhertu)
 
-## Poznámky
-
-- **Délka léčby**: Specifikována u každé indikace (např. max. 35 cyklů, 12 měsíců, 2 roky).
-- **Progrese**: Vždy verifikována opakovaným radiologickým vyšetřením (4–8 týdnů).
-- **Kombinace**: Při ukončení jedné složky kvůli toxicitě lze pokračovat s ostatními.
-- **Další specifické podmínky**: Uvedeny u jednotlivých indikací (např. PD-L1 exprese, absence mutací EGFR/ALK, MSI-H/dMMR status).
-
-
-
-# Podmínky úhrady cílené léčby v ČR (zjednodušený přehled)
-
-Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecných požadavků. Informace jsou zpracovány z dokumentu regulátora (SÚKL) a uspořádány pro větší přehlednost, platné k 7.5.2025
-
----
-
-## Obecné podmínky pro úhradu (platí pro všechny léky, pokud není uvedeno jinak)
-
-1. **Výkonnostní stav**: ECOG 0–1 (u některých indikací ECOG 0–2).
-2. **Mozkové metastázy**: Nepřítomnost klinicky aktivních mozkových metastáz, nebo jsou adekvátně léčeny (pokud je specifikováno).
-3. **Progrese onemocnění**: Léčba je hrazena do potvrzení progrese (dle kritérií RECIST, pokud uvedeno) nebo nepřijatelné toxicity, pokud není stanovena maximální délka.
-4. **Kombinovaná léčba**: Pokud je některá složka kombinace ukončena kvůli toxicitě nebo vyčerpání cyklů, ostatní složky mohou pokračovat, pokud je to dobře snášeno.
-5. **Laboratorní požadavky**: Specifické markery (např. HER2 pozitivita, BRCA1/2 mutace, RET fúze) musejí být prokázány validní metodou v referenční laboratoři.
-
----
-
-## Trastuzumab deruxtekan
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **HER2-pozitivní karcinom prsu**:
    - **Monoterapie**: Neresekovatelný lokálně pokročilý nebo metastatický.
@@ -216,11 +202,9 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
      - U hormonálně pozitivních: Předchozí hormonální terapie (HT), nebo nevhodnost HT.
    - **Úhrada**: Do progrese nebo toxicity.
 
----
+### Sacituzumab govitekan (Trodelvy)
 
-## Sacituzumab govitekan
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Triple-negativní karcinom prsu**:
    - **Monoterapie**: Neresekovatelný nebo metastatický.
@@ -230,11 +214,9 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
      - ECOG 0–1, bez aktivních mozkových metastáz (nebo léčené).
    - **Úhrada**: Do progrese nebo toxicity.
 
----
+### Lenvatinib (Lenvima)
 
-## Lenvatinib
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Karcinom štítné žlázy**:
    - **Monoterapie**: Progresivní, lokálně pokročilý nebo metastatický diferencovaný karcinom (papilární/folikulární/z Hürthleho buněk), rezistentní na radiojód (RAI).
@@ -245,11 +227,9 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
      - Bez možnosti lokoregionální terapie (radioterapie, embolizace, radiofrekvenční ablace).
    - **Úhrada**: Do progrese.
 
----
+### Pazopanib (Votrient)
 
-## Pazopanib
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Karcinom ledvin**:
    - **Monoterapie**:
@@ -267,11 +247,9 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
      - ECOG 0–1, bez CNS metastáz.
    - **Úhrada**: Do progrese (RECIST).
 
----
+### Kabozantinib (Cabometyx)
 
-## Kabozantinib
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Světlobuněčný karcinom ledvin**:
    - **Monoterapie**:
@@ -282,11 +260,9 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
      - Bez symptomatických mozkových metastáz (nebo léčené, stabilní).
    - **Úhrada**: Do progrese (RECIST).
 
----
+### Olaparib (Lynparza)
 
-## Olaparib
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Karcinom vaječníku, vejcovodu nebo primárně peritoneální**:
    - **Monoterapie (udržovací)**:
@@ -322,11 +298,9 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
      - Chemoterapie neindikována.
    - **Úhrada**: Do progrese nebo toxicity.
 
----
+### Niraparib (Zejula)
 
-## Niraparib
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Karcinom vaječníku, vejcovodu nebo primárně peritoneální**:
    - **Monoterapie (udržovací)**: Pokročilý (FIGO III–IV), high-grade serózní/endometroidní, odpověď na 1. linii platiny, bez předchozího bevacizumabu.
@@ -335,11 +309,9 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
      - Zahájení do 12 týdnů po poslední dávce platiny.
    - **Úhrada**: Do progrese, toxicity nebo max. 3 roky.
 
----
+### Trastuzumab (Herceptin)
 
-## Trastuzumab
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Časný HER2-pozitivní karcinom prsu**:
    - **Kombinace**:
@@ -363,11 +335,9 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
      - Možný goserelin (premenopauzální).
    - **Úhrada**: Do progrese nebo toxicity; u kombinace pertuzumab + trastuzumab po ukončení docetaxelu do progrese.
 
----
+### Trastuzumab emtansin (Kadcyla)
 
-## Trastuzumab emtansin
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Časný HER2-pozitivní karcinom prsu**:
    - **Monoterapie (adjuvantní)**: Reziduální invazivní onemocnění po neoadjuvantní léčbě (taxany + trastuzumab).
@@ -384,11 +354,9 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
      - HER2 pozitivita (IHC 3+ nebo ISH+), ejekční frakce ≥50 %, ECOG 0–1.
    - **Úhrada**: Do progrese.
 
----
+### Pertuzumab (Perjeta)
 
-## Pertuzumab
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Časný HER2-pozitivní karcinom prsu**:
    - **Kombinace s trastuzumabem a taxanovou chemoterapií (adjuvantní)**: Vysoké riziko rekurence, postižené mízní uzliny.
@@ -397,12 +365,10 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
      - ECOG 0–1.
      - HER2 pozitivita (IHC 3+ nebo ISH+).
    - **Úhrada**: Do rekurence, toxicity nebo max. 18 cyklů (1 rok).
+   
+### Neratinib (Nerlynx)
 
----
-
-## Neratinib
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Časný HER2-pozitivní karcinom prsu**:
    - **Monoterapie (prodloužená adjuvantní)**: HR-pozitivní, po adjuvantní léčbě trastuzumabem (<1 rok), s postižením uzlin nebo reziduálním onemocněním po neoadjuvanci.
@@ -411,11 +377,9 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
      - HER2 nadměrná exprese/amplifikace.
    - **Úhrada**: Do rekurence, toxicity nebo max. 12 měsíců.
 
----
+### Apalutamid (Erleada)
 
-## Apalutamid
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Nemetastatický kastračně rezistentní karcinom prostaty**:
    - **Monoterapie**: Vysoké riziko metastáz (zdvojení PSA ≤10 měsíců).
@@ -429,11 +393,9 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
    - **Podmínky**: ECOG 0–1.
    - **Úhrada**: Do progrese nebo toxicity.
 
----
+### Enzalutamid (Xtandi)
 
-## Enzalutamid
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Metastatický kastračně rezistentní karcinom prostaty**:
    - **Monoterapie**:
@@ -441,11 +403,9 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
      - Asymptomatický/mírně symptomatický, po selhání ADT, bez indikace chemoterapie, ECOG 0–1.
    - **Úhrada**: Do progrese (RECIST nebo skeletální příhoda).
 
----
+### Enfortumab vedotin (Padcev)
 
-## Enfortumab vedotin
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Uroteliální karcinom**:
    - **Monoterapie**: Lokálně pokročilý nebo metastatický.
@@ -454,11 +414,9 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
      - ECOG 0–1.
    - **Úhrada**: Do progrese nebo toxicity.
 
----
+### Bevacizumab
 
-## Bevacizumab
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Karcinom tlustého střeva nebo rekta**:
    - **Kombinace s fluoropyrimidinem**: 1. a 2. linie, bez ohledu na předchozí bevacizumab.
@@ -495,13 +453,9 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
    - **Podmínky**: ECOG 0–1.
    - **Úhrada**: Do progrese.
 
-**Obecné podmínky**: Bez kontraindikací dle SPC, splnění zvláštních upozornění SPC.
+### Rituximab
 
----
-
-## Rituximab
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Folikulární lymfom (FL)**:
    - **Kombinace**: Stádium III–IV nebo rizikové stádium II (GELF), 1. linie nebo relaps.
@@ -570,22 +524,18 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
     - Po selhání/relapsu/toxicitě cyklofosfamidu a cyklosporinu A, nebo nevhodnost těchto léčiv.
     - **Úhrada**: Do odpovědi nebo toxicity.
 
----
+### Polatuzumab vedotin (Polivy)
 
-## Polatuzumab vedotin
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Difúzní velkobuněčný lymfom (DLBCL)**:
    - **Kombinace s rituximabem, cyklofosfamidem, doxorubicinem, prednisonem (R-CHP)**: 1. linie, IPI skóre 3–5.
    - **Podmínky**: ECOG 0–2.
    - **Úhrada**: Do progrese nebo max. 6 cyklů kombinace, poté 2 cykly rituximabu v monoterapii.
 
----
+### Obinutuzumab (Gazyvaro)
 
-## Obinutuzumab
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Chronická lymfocytární leukémie (CLL)**:
    - **Kombinace s chlorambucilem**: 1. linie, komorbidity bránící plné dávce fludarabinu.
@@ -598,11 +548,9 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
    - **Podmínky**: ECOG 0–1 (horší stav pouze při prokázané souvislosti s FL).
    - **Úhrada**: Do progrese nebo max. 2 roky (udržovací).
 
----
+### Lonkastuximab tesirin (Zynlonta)
 
-## Lonkastuximab tesirin
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Difúzní velkobuněčný B-lymfom nebo B-buněčný lymfom s vysokým stupněm malignity**:
    - **Monoterapie**: Relabující/refrakterní po ≥2 systémových terapiích.
@@ -611,11 +559,9 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
      - Nevhodnost CAR-T terapie (stav/toxicita) nebo selhání CAR-T, exprese CD19.
    - **Úhrada**: Do progrese, toxicity nebo max. 17 cyklů.
 
----
+### Selperkatinib (Retsevmo)
 
-## Selperkatinib
-
-### Indikace a podmínky úhrady
+#### Indikace a podmínky úhrady
 
 1. **Nemalobuněčný karcinom plic (NSCLC)**:
    - **Monoterapie**: Pokročilý, RET fúze, bez předchozího RET inhibitoru.
@@ -629,12 +575,3 @@ Níže je přehled podmínek úhrady cílených léčiv podle indikací a obecn�
    - **Podmínky**: ECOG 0–2.
    - **Úhrada**: Do progrese nebo toxicity.
 
----
-
-## Poznámky
-
-- **Délka léčby**: Specifikována u každé indikace (např. max. 6, 12, 18 cyklů, 1–3 roky).
-- **Progrese**: Vždy verifikována vhodnou zobrazovací technikou (RECIST, pokud uvedeno).
-- **Kombinace**: Při ukončení jedné složky kvůli toxicitě lze pokračovat s ostatními, pokud je to tolerováno.
-- **Specifické markery**: Nutnost prokázání HER2, BRCA1/2, RET, CD20, CD19 apod. dle indikace.
-- **Kontroly**: U některých indikací pravidelné hodnocení (např. každé 3 měsíce pro pazopanib, DAS28 pro rituximab u revmatoidní artritidy).

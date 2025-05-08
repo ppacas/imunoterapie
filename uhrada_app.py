@@ -1,312 +1,356 @@
 import streamlit as st
 import re
 
-# --- Data Parsing Logic ---
+# Predefined list of known immunotherapy drugs.
+IMUNOTHERAPY_DRUGS_KEYWORDS = [
+    "Pembrolizumab", "Nivolumab", "Ipilimumab", "Durvalumab", "Avelumab", "Dostarlimab"
+]
 
-def parse_drug_block(drug_block_content):
-    """
-    Parses indications within a single drug's content block.
-    drug_block_content typically starts with "### Indikace a podmínky úhrady".
-    """
-    drug_indications = []
-    # Search for the specific H3 header for indications
-    indication_header_match = re.search(r'### Indikace a podmínky úhrady\n', drug_block_content)
+def get_drug_type(drug_name_cleaned):
+    if drug_name_cleaned in IMUNOTHERAPY_DRUGS_KEYWORDS:
+        return "Imunoterapie"
+    return "Cílená léčba"
+
+def parse_indications_from_drug_content_h4(drug_specific_content):
+    indications = []
+    # Look for H4 "#### Indikace a podmínky úhrady"
+    indication_header_match = re.search(r'#### Indikace a podmínky úhrady\n', drug_specific_content)
     
+    content_after_indication_header = drug_specific_content
     if indication_header_match:
-        content_after_header = drug_block_content[indication_header_match.end():]
-    else:
-        # If the H3 header is missing, we might assume the content directly contains indications.
-        # Or, this could indicate a formatting variation. For now, we'll process the whole block.
-        content_after_header = drug_block_content
+        content_after_indication_header = drug_specific_content[indication_header_match.end():]
 
-    # Split by numbered indications: "1. **Some Cancer Type**:"
-    # re.split with a capturing group (the parentheses around the pattern) keeps the delimiter.
-    indications_raw = re.split(r'\n(\d+\.\s+\*\*(?:.+?)\*\*:)', content_after_header)
+    indications_raw = re.split(r'\n(\d+\.\s+\*\*(?:.+?)\*\*:)', content_after_indication_header)
     
-    # The first element of indications_raw is any text before the first numbered indication.
-    # We start iterating from the first captured title.
-    j = 1 # Index for the title
+    j = 1 
     while j < len(indications_raw):
         indication_title_line = indications_raw[j].strip()
-        # Details for this indication are in the next element of the split list
         indication_details = indications_raw[j+1].strip() if (j+1) < len(indications_raw) else ""
         
-        # Extract the clean indication category name from the bolded part of the title
         match = re.match(r'\d+\.\s+\*\*(.+?)\*\*:', indication_title_line)
         if match:
-            clean_indication_name = match.group(1).strip() # .strip() to remove potential trailing spaces
-            drug_indications.append({
-                "full_title": indication_title_line, # e.g., "1. **Nemalobuněčný karcinom plic (NSCLC)**:"
-                "indication_category": clean_indication_name, # e.g., "Nemalobuněčný karcinom plic (NSCLC)"
+            clean_indication_name = match.group(1).strip()
+            indications.append({
+                "full_title": indication_title_line,
+                "indication_category": clean_indication_name,
                 "details": indication_details
             })
-        j += 2 # Move to the next title-details pair (title is at j, details at j+1)
-    return drug_indications
+        j += 2 
+    return indications
 
-def parse_therapy_section(section_content_after_h1):
-    """
-    Parses a major therapy section (e.g., the content for "Imunoterapie"
-    that comes AFTER its main H1 title).
-    """
-    general_conditions = ""
-    drugs_in_section = {}
+def parse_final_markdown_structure(markdown_text):
+    doc_title = ""
+    doc_intro_paragraph = ""
+    general_conditions_map = {} 
+    notes_map = {}
+    all_drugs_data = {}
 
-    # 1. Separate introductory paragraph from the rest.
-    # The intro (like "Níže je přehled...") is usually before the first "---".
-    # Content for General Conditions (GC) and drugs typically follows this first "---".
-    parts_by_first_hr = section_content_after_h1.split("\n---\n", 1)
-    content_for_gc_and_drugs = parts_by_first_hr[-1] # Takes content after first "---", or all content if no "---"
+    # 1. Extract Document Title (H1) and intro paragraph
+    h1_intro_match = re.match(r"^(#\s[^\n]+)\n+([^\n]+(?:(?!\n##|\n###)[^\n]*\n?)*)", markdown_text, re.MULTILINE)
+    content_after_h1_intro = markdown_text
 
-    # 2. Extract General Conditions.
-    # GC block is "## Obecné podmínky pro úhradu..." and ends before the next "---" or the next "## DrugName".
-    # Regex looks for GC header and captures content until next "---" or next H2 (drug) or end of block.
-    gc_match = re.search(
-        r"^(## Obecné podmínky pro úhradu.*?)(?:\n---\n|\n## \w|$)", 
-        content_for_gc_and_drugs, 
-        re.DOTALL | re.MULTILINE
-    )
-    # Assume all content is for drugs if GC block is not found by the specific pattern.
-    drug_content_full = content_for_gc_and_drugs 
-
-    if gc_match:
-        general_conditions_text_block = gc_match.group(1)
-        # Extract text that follows "## Obecné podmínky pro úhradu"
-        general_conditions = general_conditions_text_block.split("## Obecné podmínky pro úhradu", 1)[1].strip()
-        
-        # Drug content is what remains after the GC block.
-        end_of_gc_block = gc_match.end(0) # Position after the entire matched GC block.
-        remaining_content_after_gc = content_for_gc_and_drugs[end_of_gc_block:].strip()
-        
-        # If this remaining content starts with "---" (separator), remove it.
-        if remaining_content_after_gc.startswith("---\n"):
-            drug_content_full = remaining_content_after_gc[len("---\n"):].strip()
-        elif remaining_content_after_gc.startswith("---"): # Handles "---" without trailing newline
-             drug_content_full = remaining_content_after_gc[len("---"):].strip()
-        else:
-            # No "---" immediately after GC block; drug definitions might start directly, or GC was the last H2.
-            drug_content_full = remaining_content_after_gc
-    # else: No "## Obecné podmínky pro úhradu" found as expected. 
-    # drug_content_full remains as content_for_gc_and_drugs, which might be all drug definitions.
-
-    # 3. Parse Drugs from drug_content_full.
-    # Drug sections are "## Drug Name (Trade Name)\n### Indikace..."
-    # Split `drug_content_full` by `\n## ` (using a lookahead `\n(?=##\s)` to keep `## ` part of the next string).
-    # This ensures each "entry" starts with "## Drug Name...".
-    drug_entries = re.split(r'\n(?=##\s)', drug_content_full) 
-
-    for entry in drug_entries:
-        entry = entry.strip()
-        if not entry.startswith("## "): # Ensure it's a drug/poznámky section
-            continue 
-
-        # Each entry is "## DrugName (TradeName)\n### Indikace...\n..."
-        # Extract the H2 drug header line and the content specific to that drug.
-        first_line_end_index = entry.find('\n')
-        if first_line_end_index == -1: # H2 header is the last line in this entry.
-            h2_drug_header_line = entry[3:].strip() # Remove "## " from the start.
-            drug_specific_content = ""
-        else:
-            h2_drug_header_line = entry[3:first_line_end_index].strip() # H2 line content.
-            drug_specific_content = entry[first_line_end_index:].strip() # Content after H2 line.
-
-        # Clean drug name: remove trade name in parentheses (e.g., "Pembrolizumab (Keytruda)" -> "Pembrolizumab").
-        drug_name = re.sub(r'\s*\(.*?\)$', '', h2_drug_header_line).strip()
-
-        if not drug_name: # Skip if drug name parsing failed.
-            continue
-        
-        # Explicitly skip "Poznámky" sections if they are formatted with H2.
-        if drug_name.lower() == "poznámky": 
-            continue
-
-        drugs_in_section[drug_name] = parse_drug_block(drug_specific_content)
-        
-    return general_conditions, drugs_in_section
-
-def parse_complete_markdown(markdown_text):
-    """
-    Parses the entire markdown file, which can contain multiple main therapy type
-    sections (e.g., Immunotherapy, Targeted Therapy). Each starts with a H1 heading.
-    """
-    parsed_data = {}
+    if h1_intro_match:
+        doc_title = h1_intro_match.group(1).strip()
+        doc_intro_paragraph = h1_intro_match.group(2).strip()
+        content_after_h1_intro = markdown_text[h1_intro_match.end():].strip()
     
-    # Split the document by major H1 headings like "# Podmínky úhrady XYZ..."
-    # The regex `(?=^#\sPodmínky úhrady.*?$)` uses a positive lookahead to split
-    # *before* each line that starts with "# Podmínky úhrady", keeping the H1 line as part of the section.
-    sections = re.split(r'(?=^#\sPodmínky úhrady.*?$)', markdown_text, flags=re.MULTILINE)
+    # 2. Isolate and process "## Obecné podmínky" block
+    gc_block_regex = r"^## Obecné podmínky\n(.*?)(?=\n##\s|\Z)"
+    general_conditions_block_match = re.search(gc_block_regex, content_after_h1_intro, re.DOTALL | re.MULTILINE)
     
-    for section_block in sections:
-        section_block = section_block.strip()
-        if not section_block: # Skip empty parts that can result from the split.
-            continue
+    if general_conditions_block_match:
+        gc_block_text_content = general_conditions_block_match.group(1).strip()
+        h3_sections_in_gc = re.split(r'\n(?=###\s)', gc_block_text_content)
+        for h3_section in h3_sections_in_gc:
+            h3_section = h3_section.strip()
+            if not h3_section.startswith("### "):
+                continue
+            
+            h3_title_line_match = re.match(r"###\s([^\n]+)", h3_section)
+            if h3_title_line_match:
+                h3_title = h3_title_line_match.group(1).strip()
+                h3_content = h3_section[h3_title_line_match.end():].strip()
 
-        # Verify this block starts with the expected H1 format.
-        h1_match = re.match(r'^#\s(Podmínky úhrady\s.*?)(?:\s*\(.*?\))?(?:.*?)$', section_block, re.IGNORECASE)
-        
-        if h1_match:
-            full_h1_title = h1_match.group(1).strip() # e.g., "Podmínky úhrady imunoterapie v ČR"
-            
-            # Determine a shorter, user-friendly key for this therapy type.
-            therapy_type_key = "Neznámý typ" # Default
-            if "imunoterapie" in full_h1_title.lower():
-                therapy_type_key = "Imunoterapie"
-            elif "cílené léčby" in full_h1_title.lower() or "cílené terapie" in full_h1_title.lower():
-                therapy_type_key = "Cílená léčba"
-            else: # Fallback: clean up the H1 title for a key.
-                therapy_type_key = full_h1_title.replace("Podmínky úhrady ", "").replace(" v ČR", "").strip()
+                therapy_type_key = None
+                is_notes = "poznámky k úhradě" in h3_title.lower()
 
-            # Content for this therapy type is everything in section_block AFTER its H1 heading line.
-            # h1_match.end(0) gives the index of the end of the entire matched H1 line.
-            content_after_h1 = section_block[h1_match.end(0):].strip()
+                if "imunoterapie" in h3_title.lower():
+                    therapy_type_key = "Imunoterapie"
+                elif "cílené léčby" in h3_title.lower() or "cílené terapie" in h3_title.lower():
+                    therapy_type_key = "Cílená léčba"
+                
+                if therapy_type_key:
+                    if is_notes:
+                        notes_map[therapy_type_key] = h3_content
+                    else:
+                        general_conditions_map[therapy_type_key] = h3_content
+    
+    # 3. Isolate and process "## Seznam léků" block
+    drug_list_block_regex = r"^## Seznam léků\n(.*?)(?=\n##\s|\Z)"
+    drug_list_block_match = re.search(drug_list_block_regex, content_after_h1_intro, re.DOTALL | re.MULTILINE)
+
+    if drug_list_block_match:
+        drug_list_content = drug_list_block_match.group(1).strip()
+        drug_blocks_raw = re.split(r'\n(?=###\s\w+\s*\(?)', drug_list_content)
+
+        for drug_block_text in drug_blocks_raw:
+            drug_block_text = drug_block_text.strip()
+            if not drug_block_text.startswith("### "): 
+                continue
+
+            first_line_end_idx = drug_block_text.find('\n')
+            h3_drug_header_line = drug_block_text[4:].strip() if first_line_end_idx == -1 else drug_block_text[4:first_line_end_idx].strip()
+            drug_specific_content_for_indications = "" if first_line_end_idx == -1 else drug_block_text[first_line_end_idx:].strip()
             
-            general_conditions, drugs = parse_therapy_section(content_after_h1)
+            drug_name_cleaned = re.sub(r'\s*\(.*?\)$', '', h3_drug_header_line).strip()
+
+            if not drug_name_cleaned:
+                continue
+                
+            drug_type = get_drug_type(drug_name_cleaned)
+            indications = parse_indications_from_drug_content_h4(drug_specific_content_for_indications)
             
-            # Add to parsed_data only if drugs were actually found for this therapy type.
-            if drugs: 
-                parsed_data[therapy_type_key] = {
-                    "original_title": full_h1_title, # Store the full H1 for display
-                    "general_conditions": general_conditions,
-                    "drugs": drugs
+            if indications: 
+                 all_drugs_data[drug_name_cleaned] = {
+                    "type": drug_type,
+                    "original_header": h3_drug_header_line, 
+                    "indications": indications
                 }
-    return parsed_data
+            
+    return doc_title, doc_intro_paragraph, general_conditions_map, notes_map, all_drugs_data
 
-def get_all_indication_categories(parsed_data_dict):
-    """Extracts all unique indication categories (cancer types) from parsed data."""
-    categories = set()
-    for therapy_type_data in parsed_data_dict.values(): # Iterate through each therapy type's data
-        for drug_indications_list in therapy_type_data["drugs"].values(): # Iterate through drugs in that type
-            for ind_data in drug_indications_list: # Iterate through indications of a drug
-                categories.add(ind_data["indication_category"])
-    return ["Všechny indikace"] + sorted(list(categories))
+def get_general_indication_category(specific_category):
+    specific_category_lower = specific_category.lower()
 
-def get_all_drug_names_for_display(parsed_data_dict, selected_therapy_key="Všechny terapie"):
-    """Gets drug names, optionally filtered by selected therapy type."""
+    # Karcinom prsu
+    if "karcinom prsu" in specific_category_lower:
+        return "Karcinom prsu"
+    
+    # Karcinom plic
+    if "karcinom plic" in specific_category_lower or "nsclc" in specific_category_lower: # NSCLC is a type of lung cancer
+        return "Karcinom plic"
+
+    # Karcinom ledvin
+    if "renální karcinom" in specific_category_lower or "karcinom ledvin" in specific_category_lower:
+        return "Karcinom ledvin"
+
+    # Uroteliální karcinom
+    if "uroteliální karcinom" in specific_category_lower:
+        return "Uroteliální karcinom"
+
+    # Melanom
+    if "melanom" in specific_category_lower:
+        return "Melanom"
+
+    # Karcinom hlavy a krku
+    if "karcinom hlavy a krku" in specific_category_lower:
+        return "Karcinom hlavy a krku"
+
+    # Kolorektální karcinom / Karcinom tlustého střeva nebo rekta
+    if "kolorektální karcinom" in specific_category_lower or \
+       "karcinom tlustého střeva nebo rekta" in specific_category_lower:
+        return "Kolorektální karcinom"
+
+    # Karcinom děložního hrdla
+    if "karcinom děložního hrdla" in specific_category_lower:
+        return "Karcinom děložního hrdla"
+
+    # Hodgkinův lymfom
+    if "hodgkinův lymfom" in specific_category_lower:
+        return "Hodgkinův lymfom"
+
+    # Karcinom jícnu nebo gastroezofageální junkce
+    if "karcinom jícnu" in specific_category_lower or "gastroezofageální junkce" in specific_category_lower:
+        return "Karcinom jícnu/GEJ"
+
+    # Endometriální karcinom
+    if "endometriální karcinom" in specific_category_lower:
+        return "Endometriální karcinom"
+
+    # Karcinom z Merkelových buněk
+    if "karcinom z merkelových buněk" in specific_category_lower:
+        return "Karcinom z Merkelových buněk"
+
+    # Karcinom štítné žlázy
+    if "karcinom štítné žlázy" in specific_category_lower or "medulární karcinom štítné žlázy" in specific_category_lower:
+        return "Karcinom štítné žlázy"
+    
+    # Sarkom měkkých tkání
+    if "sarkom měkkých tkání" in specific_category_lower:
+        return "Sarkom měkkých tkání"
+
+    # Karcinom vaječníku, vejcovodu nebo primárně peritoneální
+    if "karcinom vaječníku" in specific_category_lower or \
+       "karcinom vejcovodu" in specific_category_lower or \
+       "peritoneální karcinom" in specific_category_lower or \
+       "primárně peritoneální" in specific_category_lower: # check specific_category string as well
+        return "Karcinom vaječníků/vejcovodů/peritonea"
+
+    # Karcinom prostaty
+    if "karcinom prostaty" in specific_category_lower:
+        return "Karcinom prostaty"
+
+    # Lymfomy/Leukémie (non-Hodgkin, CLL, etc.)
+    hematological_keywords = [
+        "folikulární lymfom", "dlbcl", "difúzní velkobuněčný", "lymfom z malých lymfocytů", "sll",
+        "chronická lymfatická leukémie", "cll", "lymfom z plášťových buněk", 
+        "lymfom marginální zóny", "malt", "burkittův lymfom", "akutní lymfoblastická leukémie",
+        "lymfoblastový lymfom", "waldenströmova makroglobulinémie", 
+        "b-buněčný lymfom s vysokým stupněm malignity" # For Lonkastuximab tesirin
+    ]
+    if any(keyword in specific_category_lower for keyword in hematological_keywords):
+        return "Lymfomy/Leukémie (ostatní)"
+
+    # Autoimunitní onemocnění (neonko)
+    autoimmune_keywords = [
+        "autoimunitní hemolytická anémie", "aiha", "imunitní trombocytopenická purpura", "itp",
+        "trombotická trombocytopenická purpura", "ttp", "anca asociované vaskulitidy",
+        "revmatoidní artritida", "membranózní glomerulonefritida"
+    ]
+    if any(keyword in specific_category_lower for keyword in autoimmune_keywords):
+        return "Autoimunitní onemocnění (neonko)"
+        
+    # Default: return the original specific category if no general mapping found
+    return specific_category
+
+def get_display_indication_categories(all_drugs_data_dict):
+    general_categories = set()
+    if all_drugs_data_dict:
+        for drug_data in all_drugs_data_dict.values():
+            for ind_data in drug_data["indications"]:
+                general_categories.add(get_general_indication_category(ind_data["indication_category"]))
+    
+    return ["Všechny indikace"] + sorted(list(general_categories))
+
+def get_filtered_drug_names_final(all_drugs_data_dict, selected_therapy_filter="Všechny terapie"):
     drug_names = set()
-    if selected_therapy_key == "Všechny terapie":
-        for therapy_type_data in parsed_data_dict.values():
-            drug_names.update(therapy_type_data["drugs"].keys())
-    elif selected_therapy_key in parsed_data_dict:
-        drug_names.update(parsed_data_dict[selected_therapy_key]["drugs"].keys())
+    if all_drugs_data_dict:
+        if selected_therapy_filter == "Všechny terapie":
+            drug_names.update(all_drugs_data_dict.keys())
+        else:
+            for drug_name, data in all_drugs_data_dict.items():
+                if data["type"] == selected_therapy_filter:
+                    drug_names.add(drug_name)
     return ["Všechny léky"] + sorted(list(drug_names))
 
 # --- Streamlit App UI ---
 st.set_page_config(layout="wide", page_title="Přehled úhrad léčiv")
 
-st.title("⚕️ Přehled podmínek úhrady léčiv v ČR")
-st.caption("Interaktivní přehled dle dokumentu SÚKL (zjednodušeno)")
-
-# Load and parse the markdown file
 try:
     with open("uhrada.markdown", "r", encoding="utf-8") as f:
-        markdown_content = f.read()
+        markdown_content_file = f.read()
 except FileNotFoundError:
-    st.error("Soubor 'uhrada.markdown' nebyl nalezen. Ujistěte se, že je ve stejném adresáři jako tento skript.")
+    st.error("Soubor 'uhrada.markdown' nebyl nalezen.")
     st.stop()
 
-parsed_data = parse_complete_markdown(markdown_content)
+doc_title_md, doc_intro_md, general_conditions_md, notes_md, all_drugs_md = parse_final_markdown_structure(markdown_content_file)
 
-if not parsed_data:
-    st.warning("Nepodařilo se zpracovat data z Markdown souboru. Zkontrolujte formát souboru, zejména H1 nadpisy pro jednotlivé typy terapií (např. '# Podmínky úhrady imunoterapie...').")
+if doc_title_md:
+    st.markdown(f"<h1>⚕️{doc_title_md}</h1>", unsafe_allow_html=True) 
+if doc_intro_md:
+    st.markdown(doc_intro_md)
+
+if not all_drugs_md and not general_conditions_md and not notes_md:
+    st.error("Nepodařilo se zpracovat žádná data z Markdown souboru. Zkontrolujte jeho strukturu (očekává se H1 titul, H2 'Obecné podmínky', H2 'Seznam léků').")
     st.stop()
+elif not all_drugs_md and (general_conditions_md or notes_md):
+    st.warning("Nebyly nalezeny žádné informace o lécích v sekci '## Seznam léků'. Zobrazují se pouze obecné podmínky/poznámky.")
+
 
 st.sidebar.header("Filtry")
 
-# Filter for Therapy Type
-therapy_types_available = ["Všechny terapie"] + sorted(list(parsed_data.keys()))
-selected_therapy_type = st.sidebar.selectbox("Vyberte typ terapie:", therapy_types_available)
+therapy_types_present = sorted(list(set(general_conditions_md.keys()) | set(notes_md.keys())))
+therapy_types_for_filter = ["Všechny terapie"] + therapy_types_present
+selected_therapy_type = st.sidebar.selectbox("Vyberte typ terapie:", therapy_types_for_filter)
 
-# Filter for Drug (dynamically populated based on selected therapy type)
-drugs_for_selectbox = get_all_drug_names_for_display(parsed_data, selected_therapy_type)
-selected_drug = st.sidebar.selectbox("Vyberte lék:", drugs_for_selectbox)
+drugs_for_select = get_filtered_drug_names_final(all_drugs_md, selected_therapy_type)
+selected_drug = st.sidebar.selectbox("Vyberte lék:", drugs_for_select)
 
-# Filter for Indication Category
-all_indication_categories = get_all_indication_categories(parsed_data)
-selected_indication_category = st.sidebar.selectbox("Vyberte typ diagnózy (indikace):", all_indication_categories)
+# Use the new function for general indication categories
+indication_categories_list = get_display_indication_categories(all_drugs_md)
+selected_general_indication_category = st.sidebar.selectbox("Vyberte typ diagnózy (indikace):", indication_categories_list)
 
-st.markdown("---") # Visual separator in the main area
+st.markdown("---")
 
-# Display General Conditions based on selected therapy type
-if selected_therapy_type == "Všechny terapie":
-    # Show general conditions for all available therapy types
-    for therapy_key, data in parsed_data.items():
-        if data["general_conditions"]: # Check if GC content exists
-            with st.expander(f"📋 Obecné podmínky pro úhradu – {therapy_key} ({data['original_title']})", expanded=False):
-                st.markdown(data["general_conditions"])
-elif selected_therapy_type in parsed_data:
-    # Show GC for the specifically selected therapy type
-    data = parsed_data[selected_therapy_type]
-    if data["general_conditions"]:
-        with st.expander(f"📋 Obecné podmínky pro úhradu – {selected_therapy_type} ({data['original_title']})", expanded=True):
-            st.markdown(data["general_conditions"])
-else:
-    # This case should ideally not be hit if selected_therapy_type is always from available_types
-    st.info("Obecné podmínky pro vybraný typ terapie nebyly nalezeny nebo extrahovány.")
-
-
-# --- Display Logic for Drugs and Indications ---
-results_found = False
-therapy_types_to_iterate = []
+# Display General Conditions and Notes
+gc_notes_displayed_flag = False
+expand_gc_notes = True 
 
 if selected_therapy_type == "Všechny terapie":
-    therapy_types_to_iterate = parsed_data.keys() # Iterate all therapy types
-elif selected_therapy_type in parsed_data:
-    therapy_types_to_iterate = [selected_therapy_type] # Iterate only the selected one
+    expand_gc_notes = False 
+    for therapy_key_display in therapy_types_present: 
+        if therapy_key_display in general_conditions_md:
+            with st.expander(f"📋 Obecné podmínky pro úhradu – {therapy_key_display}", expanded=expand_gc_notes):
+                st.markdown(general_conditions_md[therapy_key_display])
+                gc_notes_displayed_flag = True
+        if therapy_key_display in notes_md:
+             with st.expander(f"📝 Poznámky k úhradě – {therapy_key_display}", expanded=expand_gc_notes):
+                st.markdown(notes_md[therapy_key_display])
+                gc_notes_displayed_flag = True
+else: 
+    if selected_therapy_type in general_conditions_md:
+        with st.expander(f"📋 Obecné podmínky pro úhradu – {selected_therapy_type}", expanded=expand_gc_notes):
+            st.markdown(general_conditions_md[selected_therapy_type])
+            gc_notes_displayed_flag = True
+    if selected_therapy_type in notes_md:
+        with st.expander(f"📝 Poznámky k úhradě – {selected_therapy_type}", expanded=expand_gc_notes):
+            st.markdown(notes_md[selected_therapy_type])
+            gc_notes_displayed_flag = True
 
-for therapy_key in therapy_types_to_iterate:
-    current_therapy_data = parsed_data[therapy_key]
-    drugs_in_current_therapy = current_therapy_data["drugs"]
-    
-    drugs_to_display_for_this_therapy = []
+if not gc_notes_displayed_flag and (general_conditions_md or notes_md):
+    st.info("Pro aktuálně zvolený filtr typu terapie nebyly nalezeny specifické obecné podmínky ani poznámky, nebo v dokumentu nejsou definovány.")
+elif not general_conditions_md and not notes_md:
+    st.info("V dokumentu nebyly nalezeny žádné obecné podmínky ani poznámky v sekci '## Obecné podmínky'.")
+
+
+# Display Drug Information
+drugs_to_show_list = []
+if all_drugs_md: 
     if selected_drug == "Všechny léky":
-        drugs_to_display_for_this_therapy = sorted(drugs_in_current_therapy.keys())
-    elif selected_drug in drugs_in_current_therapy: # Drug is selected and belongs to this therapy type
-        drugs_to_display_for_this_therapy = [selected_drug]
-    # If selected_drug is specific but not in drugs_in_current_therapy, this list remains empty,
-    # so this therapy_key block will be skipped for drug display, which is correct.
+        for drug_name_iter, data_iter in all_drugs_md.items():
+            if selected_therapy_type == "Všechny terapie" or data_iter["type"] == selected_therapy_type:
+                drugs_to_show_list.append(drug_name_iter)
+        drugs_to_show_list.sort() 
+    else: 
+        if selected_drug in all_drugs_md:
+            drug_data_check = all_drugs_md[selected_drug]
+            if selected_therapy_type == "Všechny terapie" or drug_data_check["type"] == selected_therapy_type:
+                drugs_to_show_list.append(selected_drug)
 
-    if not drugs_to_display_for_this_therapy: # No drugs match the filter for this therapy type
-        continue
-
-    # Determine if a header for the therapy type itself should be printed.
-    # This is useful when "Všechny terapie" is selected and we are about to show drugs from one of them.
-    # Only print if more than one therapy type exists in the data to avoid redundant headers for single-type views.
-    needs_therapy_type_header = (selected_therapy_type == "Všechny terapie" and 
-                                 len(parsed_data) > 1 and
-                                 any(drug_name in drugs_in_current_therapy for drug_name in drugs_to_display_for_this_therapy))
-    
-    first_drug_output_for_this_therapy = True # Flag to print therapy header only once
-
-    for drug_name_iter in drugs_to_display_for_this_therapy:
-        indications_for_drug = drugs_in_current_therapy.get(drug_name_iter, [])
+results_found_for_drugs_display = False
+if drugs_to_show_list:
+    for drug_name_to_display in drugs_to_show_list:
+        current_drug_data = all_drugs_md[drug_name_to_display]
         
-        # Filter indications by selected category
-        filtered_indications = []
-        if selected_indication_category == "Všechny indikace":
-            filtered_indications = indications_for_drug
+        indications_to_display_for_this_drug = []
+        if selected_general_indication_category == "Všechny indikace":
+            indications_to_display_for_this_drug = current_drug_data["indications"]
         else:
-            for ind in indications_for_drug:
-                if ind["indication_category"] == selected_indication_category:
-                    filtered_indications.append(ind)
+            for ind_specific in current_drug_data["indications"]:
+                drug_specific_indication_general_form = get_general_indication_category(ind_specific["indication_category"])
+                if drug_specific_indication_general_form == selected_general_indication_category:
+                    indications_to_display_for_this_drug.append(ind_specific)
         
-        if filtered_indications: # If there are indications to show for this drug after filtering
-            results_found = True
+        if indications_to_display_for_this_drug:
+            results_found_for_drugs_display = True
             
-            # Print the therapy type header if needed and not already printed for this type
-            if needs_therapy_type_header and first_drug_output_for_this_therapy:
-                st.header(f"🧬 {therapy_key} – {current_therapy_data['original_title']}")
-                first_drug_output_for_this_therapy = False # Don't print again for this therapy type
+            drug_header_display = current_drug_data.get("original_header", drug_name_to_display)
+            st.markdown(f"### 💊 {drug_header_display} <font size='3'>(Typ: {current_drug_data['type']})</font>", unsafe_allow_html=True)
 
-            st.subheader(f"💊 {drug_name_iter}")
-            for ind_data in filtered_indications:
-                st.markdown(f"**{ind_data['full_title']}**")
-                # Format details: convert simple list hyphens to markdown bullets
-                detail_lines = ind_data['details'].split('\n')
-                formatted_details = [re.sub(r'^\s*-\s+', '* ', line) for line in detail_lines]
-                st.markdown("\n".join(formatted_details))
-                st.markdown("---") # Separator between indications of the same drug, or after last indication.
+            for ind_data_item_display in indications_to_display_for_this_drug:
+                st.markdown(f"**{ind_data_item_display['full_title']}**")
+                detail_lines_display = ind_data_item_display['details'].split('\n')
+                formatted_details_display = [re.sub(r'^\s*-\s+', '* ', line) for line in detail_lines_display]
+                st.markdown("\n".join(formatted_details_display))
+                st.markdown("---") 
+elif all_drugs_md: 
+    st.info("Pro aktuální kombinaci filtrů (typ terapie, lék) nebyly nalezeny žádné léky k zobrazení.")
 
-if not results_found:
-    st.info("Nebyly nalezeny žádné výsledky pro zadané filtry.")
+
+if drugs_to_show_list and not results_found_for_drugs_display:
+    st.info("Pro vybrané léky nebyly nalezeny žádné indikace odpovídající filtru diagnózy.")
+
 
 st.sidebar.markdown("---")
-st.sidebar.info("Aplikace vytvořená pro rychlý přehled podmínek úhrady léčiv.")
+st.sidebar.info("Aplikace pro přehled podmínek úhrady léčiv.")
+
