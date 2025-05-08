@@ -246,7 +246,7 @@ except FileNotFoundError:
 doc_title_md, doc_intro_md, general_conditions_md, notes_md, all_drugs_md = parse_final_markdown_structure(markdown_content_file)
 
 if doc_title_md:
-    st.markdown(f"<h1>⚕️{doc_title_md}</h1>", unsafe_allow_html=True) 
+    st.markdown(f"<h1>⚕️ Podmínky úhrady imunoterapie a cílené léčby v ČR (zjednodušený přehled)</h1>", unsafe_allow_html=True) 
 if doc_intro_md:
     st.markdown(doc_intro_md)
 
