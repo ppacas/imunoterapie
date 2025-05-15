@@ -3,7 +3,7 @@ import re
 
 # Predefined list of known immunotherapy drugs.
 IMUNOTHERAPY_DRUGS_KEYWORDS = [
-    "Pembrolizumab", "Nivolumab", "Ipilimumab", "Durvalumab", "Avelumab", "Dostarlimab"
+    "Pembrolizumab", "Nivolumab", "Ipilimumab", "Durvalumab", "Avelumab", "Dostarlimab", "Atezolizumab"
 ]
 
 def get_drug_type(drug_name_cleaned):
