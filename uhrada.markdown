@@ -46,6 +46,21 @@ Níže je přehled podmínek úhrady imunoterapeutických a cílených léků po
 
 ## Seznam léků
 
+### Atezolizumab (Tecentriq)
+
+#### Indikace a podmínky úhrady
+
+1. **Nemalobuněčný karcinom plic (NSCLC)**:
+   - **Monoterapie**: Lokálně pokročilý (stádium IIIB) nebo metastatický po předchozí chemoterapii, max. 35 cyklů pro skvamózní karcinom.
+   - **Monoterapie (1. linie)**: Metastazující NSCLC, PD-L1 TPS ≥50 % nebo PD-L1 exprese ≥50 % na nádorových buňkách nebo ≥10 % na tumor infiltrujících imunitních buňkách, nevhodní k léčbě pembrolizumabem s pemetrexedem a platinou.
+   - **Adjuvantní monoterapie**: Stádium II–IIIA s vysokým rizikem rekurence, PD-L1 TPS ≥50 % nebo PD-L1 exprese ≥50 % na nádorových buňkách, po úplné resekci a adjuvantní chemoterapii na bázi platiny, max. 16 cyklů.
+   - **Další podmínky**: Bez intersticiální plicní choroby, bez mutací EGFR/ALK.
+   - **Úhrada**: Do progrese, verifikované radiologicky (4–8 týdnů).
+
+2. **Hepatocelulární karcinom**:
+   - **Kombinace s bevacizumabem**: Pokročilý nebo neresekovatelný, jaterní funkce Child-Pugh A, bez předchozí systémové léčby, lokoregionální léčba nevhodná.
+   - **Úhrada**: Do progrese nebo toxicity.
+
 ### Pembrolizumab (Keytruda)
 
 #### Indikace a podmínky úhrady
@@ -631,21 +646,3 @@ Níže je přehled podmínek úhrady imunoterapeutických a cílených léků po
    - **Podmínky**: ECOG 0–2.
    - **Úhrada**: Do progrese nebo nepřijatelné toxicity.
 
-### Atezolizumab (Tecentriq)
-
-#### Indikace a podmínky úhrady
-
-1. **Nemalobuněčný karcinom plic (NSCLC)**:
-   - **Monoterapie**: Lokálně pokročilý (stádium IIIB) nebo metastatický po předchozí chemoterapii, max. 35 cyklů pro skvamózní karcinom.
-   - **Monoterapie (1. linie)**: Metastazující NSCLC, PD-L1 TPS ≥50 % nebo PD-L1 exprese ≥50 % na nádorových buňkách nebo ≥10 % na tumor infiltrujících imunitních buňkách, nevhodní k léčbě pembrolizumabem s pemetrexedem a platinou.
-   - **Adjuvantní monoterapie**: Stádium II–IIIA s vysokým rizikem rekurence, PD-L1 TPS ≥50 % nebo PD-L1 exprese ≥50 % na nádorových buňkách, po úplné resekci a adjuvantní chemoterapii na bázi platiny, max. 16 cyklů.
-   - **Podmínky**:
-     - ECOG 0–1.
-     - Bez intersticiální plicní choroby, bez mutací EGFR/ALK.
-   - **Úhrada**: Do progrese, verifikované radiologicky (4–8 týdnů).
-
-2. **Hepatocelulární karcinom**:
-   - **Kombinace s bevacizumabem**: Pokročilý nebo neresekovatelný, jaterní funkce Child-Pugh A, bez předchozí systémové léčby, lokoregionální léčba nevhodná.
-   - **Podmínky**:
-     - ECOG 0–1.
-   - **Úhrada**: Do progrese nebo toxicity.
