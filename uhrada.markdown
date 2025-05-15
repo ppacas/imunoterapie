@@ -149,7 +149,7 @@ Níže je přehled podmínek úhrady imunoterapeutických a cílených léků po
    - **Kombinace s nivolumabem a chemoterapií (1. linie)**: Metastazující NSCLC, PD-L1 TPS 0–49 %. Max. 2 cykly chemoterapie na bázi platiny, celková léčba max. 24 měsíců.
    - **Další podmínky**: Bez aktivačních mutací EGFR/ALK, bez intersticiální plicní choroby.
 
-### Durvalimab (Imfinzi)
+### Durvalumab (Imfinzi)
 
 #### Indikace a podmínky úhrady
 
@@ -641,11 +641,6 @@ Níže je přehled podmínek úhrady imunoterapeutických a cílených léků po
    - **Adjuvantní monoterapie**: Stádium II–IIIA s vysokým rizikem rekurence, PD-L1 TPS ≥50 % nebo PD-L1 exprese ≥50 % na nádorových buňkách, po úplné resekci a adjuvantní chemoterapii na bázi platiny, max. 16 cyklů.
    - **Podmínky**:
      - ECOG 0–1.
-     - Bez klinicky aktivních mozkových metastáz (nebo léčené).
-     - Bez dlouhodobé léčby kortikosteroidy (>10 mg prednisonu denně) nebo imunosupresivy.
-     - Bez závažných autoimunitních onemocnění (kromě diabetu I. typu, autoimunitního zánětu štítné žlázy, kožních onemocnění).
-     - Kreatinin ≤1,5× ULN, hemoglobin ≥90 g/l, leukocyty ≥2,5×10⁹/l, neutrofily ≥1,5×10⁹/l, trombocyty ≥100×10⁹/l.
-     - Játra: Bilirubin ≤1,5× ULN (≤3× ULN u Gilbertova syndromu), AST/ALT ≤3× ULN (≤5× ULN při jaterních metastázách).
      - Bez intersticiální plicní choroby, bez mutací EGFR/ALK.
    - **Úhrada**: Do progrese, verifikované radiologicky (4–8 týdnů).
 
@@ -653,8 +648,4 @@ Níže je přehled podmínek úhrady imunoterapeutických a cílených léků po
    - **Kombinace s bevacizumabem**: Pokročilý nebo neresekovatelný, jaterní funkce Child-Pugh A, bez předchozí systémové léčby, lokoregionální léčba nevhodná.
    - **Podmínky**:
      - ECOG 0–1.
-     - Bez klinicky aktivních mozkových metastáz (nebo léčené).
-     - Bez dlouhodobé léčby kortikosteroidy (>10 mg prednisonu denně) nebo imunosupresivy.
-     - Bez závažných autoimunitních onemocnění (kromě diabetu I. typu, autoimunitního zánětu štítné žlázy, kožních onemocnění).
-     - Kreatinin ≤1,5× ULN, hemoglobin ≥90 g/l, leukocyty ≥2,5×10⁹/l, neutrofily ≥1,5×10⁹/l, trombocyty ≥100×10⁹/l.
    - **Úhrada**: Do progrese nebo toxicity.
