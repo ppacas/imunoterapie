@@ -149,7 +149,7 @@ Níže je přehled podmínek úhrady imunoterapeutických a cílených léků po
    - **Kombinace s nivolumabem a chemoterapií (1. linie)**: Metastazující NSCLC, PD-L1 TPS 0–49 %. Max. 2 cykly chemoterapie na bázi platiny, celková léčba max. 24 měsíců.
    - **Další podmínky**: Bez aktivačních mutací EGFR/ALK, bez intersticiální plicní choroby.
 
-### Durvalumab (Imfinzi)
+### Durvalimab (Imfinzi)
 
 #### Indikace a podmínky úhrady
 
@@ -318,7 +318,7 @@ Níže je přehled podmínek úhrady imunoterapeutických a cílených léků po
      - S paclitaxelem/docetaxelem po chirurgii a adjuvantní chemoterapii (doxorubicin/cyklofosfamid).
      - S adjuvantní chemoterapií (docetaxel + karboplatina).
      - S neoadjuvantní chemoterapií.
-   - **Monoterapie**: Po chirurgii a (neo)adjuvantní chemoterapii.
+   - **Monoterapie**: Po chirurgii a (neo)adjuvantní chemoterapie.
    - **Podmínky**:
      - HER2 pozitivita (IHC 3+ nebo ISH+).
      - Možná souběžná endokrinní terapie (tamoxifen, inhibitor aromatázy) nebo goserelin (premenopauzální ženy).
@@ -365,7 +365,7 @@ Níže je přehled podmínek úhrady imunoterapeutických a cílených léků po
      - ECOG 0–1.
      - HER2 pozitivita (IHC 3+ nebo ISH+).
    - **Úhrada**: Do rekurence, toxicity nebo max. 18 cyklů (1 rok).
-   
+
 ### Neratinib (Nerlynx)
 
 #### Indikace a podmínky úhrady
@@ -575,3 +575,86 @@ Níže je přehled podmínek úhrady imunoterapeutických a cílených léků po
    - **Podmínky**: ECOG 0–2.
    - **Úhrada**: Do progrese nebo toxicity.
 
+### Osimertinib (Tagrisso)
+
+#### Indikace a podmínky úhrady
+
+1. **Nemalobuněčný karcinom plic (NSCLC)**:
+   - **Monoterapie**:
+     - Lokálně pokročilý (stádium IIIB) nebo metastazující (stádium IV), přítomnost mutace EGFR T790M prokázaná validovaným testem v referenční laboratoři, po předchozí léčbě inhibitory tyrozinkináz EGFR.
+     - Lokálně pokročilý (stádium IIIB) nebo metastazující (stádium IV), přítomnost aktivační mutace EGFR prokázaná validovaným testem v referenční laboratoři, v první linii u dosud neléčených pacientů.
+   - **Adjuvantní monoterapie**: Stádium IB–IIIA po úplné resekci nádoru a adjuvantní chemoterapii (je-li indikována), přítomnost delece exonu 19 EGFR a/nebo substituční mutace exonu 21 (L858R) prokázaná validovaným testem v referenční laboratoři.
+   - **Podmínky**:
+     - ECOG 0–1.
+     - Bez symptomatických CNS metastáz u lokálně pokročilého nebo metastazujícího NSCLC.
+     - V adjuvantní léčbě: Zahájení do 10 týdnů po resekci bez adjuvantní chemoterapie, nebo do 26 týdnů s adjuvantní chemoterapií.
+   - **Úhrada**: Do progrese; v adjuvantní léčbě max. 3 roky.
+
+### Crizotinib (Xalkori)
+
+#### Indikace a podmínky úhrady
+
+1. **Nemalobuněčný karcinom plic (NSCLC)**:
+   - **Monoterapie**: Lokálně pokročilý (stádium IIIB) nebo metastazující (stádium IV), přítomnost přestavby genu ALK prokázaná validovaným testem v referenční laboratoři, pacienti ≥18 let.
+   - **Podmínky**: ECOG 0–2.
+   - **Úhrada**: Do progrese dle RECIST.
+
+### Alektinib (Alecensa)
+
+#### Indikace a podmínky úhrady
+
+1. **Nemalobuněčný karcinom plic (NSCLC)**:
+   - **Adjuvantní monoterapie**: Stádium IB–IIIA po úplné resekci, přítomnost přestavby genu ALK prokázaná validovaným testem v referenční laboratoři.
+   - **Monoterapie (1. linie)**: Lokálně pokročilý (stádium IIIB) nebo metastazující (stádium IV), přítomnost přestavby genu ALK prokázaná validovaným testem v referenční laboratoři.
+   - **Monoterapie**: Lokálně pokročilý (stádium IIIB) nebo metastazující (stádium IV) po předchozí léčbě krizotinibem, přítomnost přestavby genu ALK prokázaná validovaným testem v referenční laboratoři.
+   - **Podmínky**:
+     - ECOG 0–2 (pro adjuvantní léčbu ECOG 0–1).
+     - Přítomnost přestavby genu ALK.
+   - **Úhrada**: Do progrese; v adjuvantní léčbě max. 2 roky.
+
+### Brigatinib (Alunbrig)
+
+#### Indikace a podmínky úhrady
+
+1. **Nemalobuněčný karcinom plic (NSCLC)**:
+   - **Monoterapie (1. linie)**: Lokálně pokročilý (stádium IIIB) nebo metastazující (stádium IV), přítomnost přestavby genu ALK prokázaná validovaným testem v referenční laboratoři.
+   - **Monoterapie**: Lokálně pokročilý (stádium IIIB) nebo metastazující (stádium IV) po předchozí léčbě krizotinibem, přítomnost přestavby genu ALK prokázaná validovaným testem v referenční laboratoři.
+   - **Podmínky**: ECOG 0–2.
+   - **Úhrada**: Do progrese.
+
+### Entrektinib (Rozlytrek)
+
+#### Indikace a podmínky úhrady
+
+1. **Nemalobuněčný karcinom plic (NSCLC)**:
+   - **Monoterapie**: Lokálně pokročilý (stádium IIIB) nebo metastazující (stádium IV), přítomnost přestavby genu ROS1 prokázaná validovaným testem v referenční laboratoři, pacienti ≥18 let.
+   - **Podmínky**: ECOG 0–2.
+   - **Úhrada**: Do progrese nebo nepřijatelné toxicity.
+
+### Atezolizumab (Tecentriq)
+
+#### Indikace a podmínky úhrady
+
+1. **Nemalobuněčný karcinom plic (NSCLC)**:
+   - **Monoterapie**: Lokálně pokročilý (stádium IIIB) nebo metastatický po předchozí chemoterapii, max. 35 cyklů pro skvamózní karcinom.
+   - **Monoterapie (1. linie)**: Metastazující NSCLC, PD-L1 TPS ≥50 % nebo PD-L1 exprese ≥50 % na nádorových buňkách nebo ≥10 % na tumor infiltrujících imunitních buňkách, nevhodní k léčbě pembrolizumabem s pemetrexedem a platinou.
+   - **Adjuvantní monoterapie**: Stádium II–IIIA s vysokým rizikem rekurence, PD-L1 TPS ≥50 % nebo PD-L1 exprese ≥50 % na nádorových buňkách, po úplné resekci a adjuvantní chemoterapii na bázi platiny, max. 16 cyklů.
+   - **Podmínky**:
+     - ECOG 0–1.
+     - Bez klinicky aktivních mozkových metastáz (nebo léčené).
+     - Bez dlouhodobé léčby kortikosteroidy (>10 mg prednisonu denně) nebo imunosupresivy.
+     - Bez závažných autoimunitních onemocnění (kromě diabetu I. typu, autoimunitního zánětu štítné žlázy, kožních onemocnění).
+     - Kreatinin ≤1,5× ULN, hemoglobin ≥90 g/l, leukocyty ≥2,5×10⁹/l, neutrofily ≥1,5×10⁹/l, trombocyty ≥100×10⁹/l.
+     - Játra: Bilirubin ≤1,5× ULN (≤3× ULN u Gilbertova syndromu), AST/ALT ≤3× ULN (≤5× ULN při jaterních metastázách).
+     - Bez intersticiální plicní choroby, bez mutací EGFR/ALK.
+   - **Úhrada**: Do progrese, verifikované radiologicky (4–8 týdnů).
+
+2. **Hepatocelulární karcinom**:
+   - **Kombinace s bevacizumabem**: Pokročilý nebo neresekovatelný, jaterní funkce Child-Pugh A, bez předchozí systémové léčby, lokoregionální léčba nevhodná.
+   - **Podmínky**:
+     - ECOG 0–1.
+     - Bez klinicky aktivních mozkových metastáz (nebo léčené).
+     - Bez dlouhodobé léčby kortikosteroidy (>10 mg prednisonu denně) nebo imunosupresivy.
+     - Bez závažných autoimunitních onemocnění (kromě diabetu I. typu, autoimunitního zánětu štítné žlázy, kožních onemocnění).
+     - Kreatinin ≤1,5× ULN, hemoglobin ≥90 g/l, leukocyty ≥2,5×10⁹/l, neutrofily ≥1,5×10⁹/l, trombocyty ≥100×10⁹/l.
+   - **Úhrada**: Do progrese nebo toxicity.
